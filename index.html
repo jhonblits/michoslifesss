@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Tengo algo para ti</title>
+  <meta name="description" content="Una sorpresa para ti.">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#C21E8D">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%92%96%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=DynaPuff:wght@500;700&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Pétalos de buganvilia que caen suavemente -->
+  <div class="petalos" id="petalos" aria-hidden="true"></div>
+
+  <main>
+
+    <!-- PORTADA: el sobre -->
+    <section class="escena portada" id="portada" aria-labelledby="tituloPortada">
+      <div class="banderines" aria-hidden="true"></div>
+      <h1 id="tituloPortada">Tengo algo<br>para ti</h1>
+
+      <button class="sobre" id="sobre" type="button" aria-label="Abrir el sobre">
+        <span class="sobre-fondo"></span>
+        <span class="sobre-solapa"></span>
+        <span class="sobre-carta" aria-hidden="true">♥</span>
+        <span class="sobre-frente"></span>
+      </button>
+
+      <p class="pista" id="pista">Toca el sobre para abrirlo</p>
+    </section>
+
+    <!-- Todo lo demás se muestra al abrir el sobre -->
+    <div id="historia" hidden>
+
+      <!-- ESCENA: lugares -->
+      <section class="escena cielo" id="lugares" aria-labelledby="tituloLugares">
+        <div class="contenedor texto-centro">
+          <h2 id="tituloLugares">Mis momentos favoritos</h2>
+          <p class="sub">Buganvillas, ríos, miradores y un parque lleno de flamencos. En todos, lo mejor eres tú.</p>
+        </div>
+        <div class="cinta" id="cinta">
+          <div class="cinta-pista" id="cintaPista"></div>
+        </div>
+      </section>
+
+      <!-- ESCENA: juntos -->
+      <section class="escena durazno" id="juntos" aria-labelledby="tituloJuntos">
+        <div class="contenedor">
+          <h2 id="tituloJuntos" class="texto-centro">Y mejor todavía cuando estamos juntos</h2>
+          <div class="collage" id="collage"></div>
+        </div>
+      </section>
+
+      <!-- ESCENA: video -->
+      <section class="escena noche" id="video" aria-labelledby="tituloVideo">
+        <div class="estrellas" aria-hidden="true"></div>
+        <div class="contenedor texto-centro">
+          <h2 id="tituloVideo">Grabé esto para ti</h2>
+          <div class="celular">
+            <video id="videoPrincipal" controls playsinline preload="metadata" poster="assets/video-poster.jpg">
+              <source src="assets/video-para-ti.mp4" type="video/mp4">
+              Tu navegador no puede reproducir este video.
+            </video>
+          </div>
+          <p class="sub">Súbele el volumen.</p>
+        </div>
+      </section>
+
+      <!-- ESCENA: carta -->
+      <section class="escena retama" id="carta" aria-labelledby="tituloCarta">
+        <div class="contenedor carta-grid">
+          <figure class="polaroid polaroid-grande" id="fotoCarta"></figure>
+          <article class="hoja" id="hoja">
+            <h2 id="tituloCarta" class="sr-only">Una carta para ti</h2>
+          </article>
+        </div>
+      </section>
+
+      <!-- ESCENA: la pregunta -->
+      <section class="escena pregunta" id="pregunta" aria-labelledby="tituloPregunta">
+        <div class="contenedor texto-centro">
+          <div class="arco" id="arco"></div>
+          <h2 id="tituloPregunta" class="gigante">¿Quieres ser mi novia?</h2>
+
+          <div class="botones" id="botones">
+            <button class="btn btn-si" id="btnSi" type="button">Sí, quiero</button>
+            <button class="btn btn-no" id="btnNo" type="button">No</button>
+          </div>
+          <p class="aviso-no" id="avisoNo" aria-live="polite"></p>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- VENTANA DE ERROR (cuando dicen "No") -->
+  <dialog id="error" aria-labelledby="errTitulo">
+    <div class="ventana">
+      <div class="barra">
+        <span id="errTitulo">respuesta_no.exe</span>
+        <button class="x" id="errX" type="button" aria-label="Cerrar">✕</button>
+      </div>
+      <div class="cuerpo">
+        <span class="icono" aria-hidden="true">⚠</span>
+        <div>
+          <strong id="errCodigo">ERROR</strong>
+          <p id="errTexto"></p>
+        </div>
+      </div>
+      <div class="pie">
+        <button class="btn-mini" id="errOk" type="button">Aceptar</button>
+        <button class="btn-mini btn-mini-si" id="errSi" type="button">Mejor digo que sí</button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- CELEBRACIÓN (cuando dicen "Sí") -->
+  <div class="celebracion" id="celebracion" hidden role="dialog" aria-modal="true" aria-labelledby="celTitulo">
+    <div class="banderines" aria-hidden="true"></div>
+    <canvas id="confeti" aria-hidden="true"></canvas>
+    <div class="cel-capa" id="celCapa" aria-hidden="true"></div>
+
+    <div class="cel-contenido">
+      <p class="cel-pre" id="celTitulo" tabindex="-1">Sabía que aceptarías</p>
+      <p class="cel-teamo">Te amo</p>
+
+      <div class="corazon-marco">
+        <div class="corazon-foto" id="corazonFoto"></div>
+      </div>
+
+      <p class="cel-fecha" id="celFecha"></p>
+      <button class="btn btn-volver" id="btnVolver" type="button">Volver a verlo</button>
+    </div>
+  </div>
+
+  <!-- Forma de corazón para recortar las fotos -->
+  <svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute">
+    <defs>
+      <clipPath id="formaCorazon" clipPathUnits="objectBoundingBox">
+        <path d="M0.5,0.96 C0.5,0.96 0.02,0.64 0.02,0.31 C0.02,0.14 0.15,0.04 0.28,0.04 C0.38,0.04 0.46,0.09 0.5,0.18 C0.54,0.09 0.62,0.04 0.72,0.04 C0.85,0.04 0.98,0.14 0.98,0.31 C0.98,0.64 0.5,0.96 0.5,0.96 Z"/>
+      </clipPath>
+    </defs>
+  </svg>
+
+  <script src="script.js"></script>
+</body>
+</html>
